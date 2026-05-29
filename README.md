@@ -69,7 +69,7 @@ Install Python on your system.
 Clone this repository:
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/Student-Management-System-Python.git
+git clone https://github.com/nomi40/Student-Management-System-Python.git
 ```
 
 ### Step 3:
