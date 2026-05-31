@@ -2,6 +2,7 @@ Names = []
 RollNo = []
 TotalMarks = []
 Grades =  []
+
 def addStudent():
     name =  input("Enter name of Student:")
     Names.append(name)
@@ -11,7 +12,7 @@ def addStudent():
 
     sumMarks = 0
     for i in range (7):
-        marks = int(input("Enter marks of Seven Subject : "))
+        marks = int(input("Enter marks of Subject "+str(i+1)+" : "))
         sumMarks += marks
     
     TotalMarks.append(sumMarks)
@@ -61,11 +62,11 @@ def updateStudent():
 
             sumMarks = 0
             for i in range (7):
-                marks = int(input("Enter marks of Seven Subject : "))
+                marks = int(input("Enter marks of Subject "+str(i+1)+" : "))
                 sumMarks += marks
     
-                TotalMarks[index] = sumMarks
-                percentage = (sumMarks/700)*100
+            TotalMarks[index] = sumMarks
+            percentage = (sumMarks/700)*100
 
             if(percentage>90):
                 Grades[index] = "A"
@@ -96,8 +97,27 @@ def  deleteStudent():
             break
     if(studentFound == False):
         print("Student not found!")
-       
 
+
+def writeFile():
+    with open("Students_info.txt","w")as file:
+        i = 0
+        while i<len(Names):
+            file.write(Names[i]+" "+str(RollNo[i])+" "+str(TotalMarks[i])+" "+Grades[i]+"\n")
+            i=i+1
+
+
+def readFile():
+    with open("Students_info.txt","r")as file:
+        for line in file:
+            data = line.split()
+            Names.append(data[0])
+            RollNo.append(int(data[1]))
+            TotalMarks.append(int(data[2]))
+            Grades.append(data[3])
+
+
+readFile()
 print("==== STUDENT MANAGMENT SYSTEM ====")
 print("1) Add Student")
 print("2) View Student")
@@ -119,7 +139,8 @@ while (True):
     elif(choice == 5):
         deleteStudent()
     elif(choice == 6):
-        print("Exit!")
+        writeFile()
+        print("Exit")
         break
     else:
         print("Incorrect choice.Enter different one!")
